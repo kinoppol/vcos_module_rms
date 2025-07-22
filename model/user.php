@@ -11,4 +11,9 @@ class user extends dummy_model{
         
     }
 
+    function add_user($data){
+        $sql='insert into user_data set '.arr2set($data);
+        $result=$this->db->query($sql);
+    }
+
 }
