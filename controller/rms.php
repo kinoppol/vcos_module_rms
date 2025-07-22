@@ -2,7 +2,15 @@
 class rms{
   function import(){
     global $module;
-    $ret['content'] = $module->view('home/import');
+
+    $sync_record=$module->model('sync');
+    $data['personal_sync_time']=$sync_record->get_last_record(array('sync_name'=>'personal'));
+    $data['semester_sync_time']=$sync_record->get_last_record(array('sync_name'=>'semester'));
+    $data['timetable_sync_time']=$sync_record->get_last_record(array('sync_name'=>'timetable'));
+    $data['substitute_sync_time']=$sync_record->get_last_record(array('sync_name'=>'substitute'));
+    
+    
+    $ret['content'] = $module->view('home/import',$data);
     $ret['title'] = 'นำเข้าข้อมูลจากระบบ RMS';
     return $ret;
   }
@@ -28,6 +36,10 @@ class rms{
     //print_r($user_data);
     $user_model = $module->model('user');
     $user_model->clear_user();
+    
+    $sync_record=$module->model('sync');
+    $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'personal','result'=>'ok'));
+
     $ret['content']=redirect(module_url('rms','import'));
     return $ret;
   }

@@ -1,6 +1,10 @@
 <?php
 helper('time');
 $data['title']='รายการข้อมูลที่นำเข้าจากระบบ RMS';
+$personal_synctime=$personal_sync_time==NULL?'ยังไม่นำเข้า':$personal_sync_time.' ( '.xTimeAgo ($personal_sync_time, date('Y-m-d H:i:s')).' )';
+$semester_synctime=$semester_sync_time==NULL?'ยังไม่นำเข้า':$semester_sync_time.' ( '.xTimeAgo ($semester_sync_time, date('Y-m-d H:i:s')).' )';
+$timetable_synctime=$timetable_sync_time==NULL?'ยังไม่นำเข้า':$timetable_sync_time.' ( '.xTimeAgo ($timetable_sync_time, date('Y-m-d H:i:s')).' )';
+$substitute_synctime=$substitute_sync_time==NULL?'ยังไม่นำเข้า':$substitute_sync_time.' ( '.xTimeAgo ($substitute_sync_time, date('Y-m-d H:i:s')).' )';
 $data['content']='
 <div class="table-responsive text-nowrap">
                       <table class="table">
@@ -14,7 +18,7 @@ $data['content']='
                           <tbody class="table-border-bottom-0">
                           <tr>
                             <td>ข้อมูลบุคลากร และแผนกวิชา</td>
-                            <td>2025-07-21 11:05:00 ('.xTimeAgo ('2025-07-21 11:05:00', date('Y-m-d H:i:s')).')</td>
+                            <td>'.$personal_synctime.'</td>
                             <td>
                             <a href="'.module_api('rms','api_getPersonal').'" class="import_bt btn btn-primary">
                             <i class="bx bx-download me-1"></i>
@@ -24,7 +28,7 @@ $data['content']='
                           </tr>
                           <tr>
                             <td>ภาคเรียน และวันหยุด</td>
-                            <td>'.xTimeAgo ('2025-07-22 09:15:00', date('Y-m-d H:i:s')).'</td>
+                            <td>'.$semester_synctime.'</td>
                             <td>
                             <button class="btn btn-primary">
                             <i class="bx bx-download me-1"></i>
@@ -34,7 +38,7 @@ $data['content']='
                           </tr>
                           <tr>
                             <td>ตารางสอน</td>
-                            <td>'.xTimeAgo ('2025-07-22 08:13:00', date('Y-m-d H:i:s')).'</td>
+                            <td>'.$timetable_synctime.'</td>
                             <td>
                             <button class="btn btn-primary">
                             <i class="bx bx-download me-1"></i>
@@ -44,7 +48,7 @@ $data['content']='
                           </tr>
                           <tr>
                             <td>การสอนแทนสอนชดเชย</td>
-                            <td>2025-07-21 11:05:00 ('.xTimeAgo ('2025-07-21 11:05:00', date('Y-m-d H:i:s')).')</td>
+                            <td>'.$substitute_synctime.'</td>
                             <td>
                             <button class="btn btn-primary import_btn">
                             <i class="bx bx-download me-1"></i>
