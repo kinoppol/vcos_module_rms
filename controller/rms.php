@@ -21,4 +21,14 @@ class rms{
     $user_model->clear_user();
   }
 
+  function api_getPersonal(){
+    global $module;
+    $module->helper('rms');
+    $user_data=api_load_user();
+    //print_r($user_data);
+    $user_model = $module->model('user');
+    $user_model->clear_user();
+    $ret['content']=redirect(module_url('rms','import'));
+    return $ret;
+  }
 }
