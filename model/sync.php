@@ -11,7 +11,7 @@ class sync extends dummy_model{
     }
 
     function get_last_record($data=array()){
-        $sql='select * from rms_sync_record where sync_name='.pq($data['sync_name']).' order by sync_time desc limit 1';
+        $sql='select * from rms_sync_record where sync_name='.pq($data['sync_name']).' and result="ok" order by sync_time desc limit 1';
         $result=$this->db->query($sql);
         //print_r($result);
         if($result->num_rows<1){
