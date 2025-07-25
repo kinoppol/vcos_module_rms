@@ -8,7 +8,7 @@ if(empty(trim($rms))){
     exit();
 }
 $people_data=rms_get_data($rms,$rms_api_key,'people');
-print_r($people_data);
+//print_r($people_data);
 return $people_data;
 }
 

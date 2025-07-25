@@ -4,12 +4,12 @@ $menu['เชื่อมโยงข้อมูลระบบ RMS']=array(
     'import'=>array(
         'label'=>'นำเข้าข้อมูลจากระบบ RMS',
         'bullet'=>'tf-icons bx bx-download',
-        'url'=>module_url('rms','import'),
+        'url'=>module_url('rms','rms','import'),
     ),
     'Export'=>array(
         'label'=>'ส่งข้อมูลกลับระบบ RMS',
         'bullet'=>'tf-icons bx bx-upload',
-        'url'=>module_url('rms','export'),
+        'url'=>module_url('rms','rms','export'),
         /*'item'=>array(
                 'menu1'=>array(
                 'label'=>'เมนูย่อย 1',

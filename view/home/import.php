@@ -20,7 +20,7 @@ $data['content']='
                             <td>ข้อมูลบุคลากร และแผนกวิชา</td>
                             <td>'.$personal_synctime.'</td>
                             <td>
-                            <a href="'.module_api('rms','api_getPersonal').'" class="import_bt btn btn-primary">
+                            <a href="'.module_api('rms','rms_api','getPersonal').'" class="import_bt btn btn-primary">
                             <i class="bx bx-download me-1"></i>
                             นำเข้า
                             </a>
