@@ -30,20 +30,20 @@ $data['content']='
                             <td>ภาคเรียน และวันหยุด</td>
                             <td>'.$semester_synctime.'</td>
                             <td>
-                            <button class="btn btn-primary">
+                            <a href="'.module_api('rms','rms_api','getSemester').'" class="import_bt btn btn-primary">
                             <i class="bx bx-download me-1"></i>
                             นำเข้า
-                            </button>
+                            </a>
                             </td>
                           </tr>
                           <tr>
                             <td>ตารางสอน</td>
                             <td>'.$timetable_synctime.'</td>
                             <td>
-                            <button class="btn btn-primary">
+                            <a href="'.module_api('rms','rms_api','getTimetable').'" class="import_bt btn btn-primary">
                             <i class="bx bx-download me-1"></i>
                             นำเข้า
-                            </button>
+                            </a>
                             </td>
                           </tr>
                           <tr>

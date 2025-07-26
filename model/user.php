@@ -5,7 +5,7 @@ class user extends dummy_model{
         parent::__construct($db_ref);
     }
    function clear_user($data=array()){
-        $sql='delete from user_data where user_type_id > 1';
+        $sql='delete from user_data where user_type_id != 1';
         //print $sql;
         $result=$this->db->query($sql);
 
@@ -22,6 +22,11 @@ class user extends dummy_model{
 
     function add_user($data){
         $sql='insert into user_data set '.arr2set($data);
+        $result=$this->db->query($sql);
+    }
+
+    function user_update($con,$data){
+        $sql='update user_data set '.arr2set($data).' where '.arr2set($con);
         $result=$this->db->query($sql);
     }
 
