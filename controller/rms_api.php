@@ -150,11 +150,11 @@ class rms_api{
     return $ret;
   }
 
-  function getTimetable(){
+  function getTimetableBlockcourse(){
     global $module;
     global $system;
     $module->helper('rms');
-    $timetable_data=api_load('chk');
+    $timetable_data=api_load('std2018_timetable_blockcourse');
     
     print_r($timetable_data);
   }
