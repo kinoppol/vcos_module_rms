@@ -119,7 +119,7 @@ class rms_api{
     }
 
     $ret['content']=redirect(module_url('rms','rms','import'));
-    return $ret;
+    return $ret['content'];
   }
 
   function getSemester(){
@@ -147,7 +147,7 @@ class rms_api{
     }
 
     $ret['content']=redirect(module_url('rms','rms','import'));
-    return $ret;
+    return $ret['content'];
   }
 
   function getTimetableBlockcourse(){
