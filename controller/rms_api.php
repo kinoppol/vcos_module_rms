@@ -10,12 +10,12 @@ class rms_api{
     
     if(!is_array($users)){//If result not an array skip import
       $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'personal','result'=>'Return value is not array'));
-      redirect(module_url('rms','import'));
-      return $ret;
+      print redirect(module_url('rms','import'));
+      //return $ret;
     }else if(count($users)<1){//If result is empty skip import   
       $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'personal','result'=>'Return value is zero user'));
-      redirect(module_url('rms','import'));
-      return $ret;
+      print redirect(module_url('rms','import'));
+      //return $ret;
     }
 
     $user_model = $module->model('user');
@@ -45,8 +45,8 @@ class rms_api{
     $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'personal','result'=>'ok'));
 
     print "นำเข้าข้อมูลบุคลากรเรียบร้อย กำลังโหลดค่าตำแหน่งรับผิดชอบ โปรดรอสักครู่..";
-    $ret['content']=redirect(module_api('rms','rms_api','get_people_pro'));
-    return $ret;
+    print redirect(module_api('rms','rms_api','get_people_pro'));
+    //return $ret;
   }
 
   function get_people_pro(){
