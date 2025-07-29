@@ -118,8 +118,9 @@ class rms_api{
 
     }
 
-    $ret['content']=redirect(module_url('rms','rms','import'));
-    return $ret['content'];
+    //$ret['content']=
+    print redirect(module_url('rms','rms','import'));
+    //return $ret['content'];
   }
 
   function getSemester(){
@@ -146,8 +147,8 @@ class rms_api{
       $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'semester','result'=>'ok'));
     }
 
-    $ret['content']=redirect(module_url('rms','rms','import'));
-    return $ret['content'];
+    print redirect(module_url('rms','rms','import'));
+    //return $ret['content'];
   }
 
   function getTimetableBlockcourse(){
