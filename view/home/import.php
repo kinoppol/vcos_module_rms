@@ -40,7 +40,7 @@ $data['content']='
                             <td>ตารางสอน</td>
                             <td>'.$timetable_synctime.'</td>
                             <td>
-                            <a href="'.module_api('rms','rms_api','getTimetableBlockcourse').'" class="import_bt btn btn-primary">
+                            <a href="'.module_api('rms','rms_api','getTimetable').'" class="import_bt btn btn-primary">
                             <i class="bx bx-download me-1"></i>
                             นำเข้า
                             </a>

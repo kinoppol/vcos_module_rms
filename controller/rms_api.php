@@ -159,4 +159,45 @@ class rms_api{
     
     print_r($timetable_data);
   }
+
+  function getTimetable(){
+    global $module;
+    global $system;
+    $semester='2/2567';
+    $module->helper('rms');
+    $timetable_data=api_load('studing',array('semes'=>$semester));
+    $timetable_model=$module->model('timetable');
+    if(count($timetable_data)>0){
+    
+    $timetable_model->clear(array('semester'=>$semester));
+    foreach($timetable_data as $row){
+      $data=array(
+          'timeTableID'=>$row['timeTableID'],
+          'timeTableSubID'=>$row['timeTableSubID'],
+          'semester'=>$row['semes'],
+          'subject_code'=>$row['subject_id'],
+          'subject_name'=>$row['subject_name'],
+          'student_group_id'=>$row['student_group_id'],
+          'time_range'=>$row['dpr3'],
+          'day_of_week'=>$row['dpr2'],
+          'time_total'=>$row['dpr4'],
+          'teacher_id'=>$row['teacher_id'],
+          'teacher_co_id'=>$row['teacher_com_id'],
+          'room'=>$row['roomName'],
+      );
+      $result=$timetable_model->add($data);
+      }
+
+    //print_r($timetable_data);
+      
+      $sync_record=$module->model('sync');
+      $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'timetable','result'=>'ok'));
+    }else{
+      
+      $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'timetable','result'=>'Return value is zero timetable'));
+    }
+
+    $ret['content']=redirect(module_url('rms','rms','import'));
+    return $ret;
+  }
 }
