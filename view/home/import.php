@@ -6,6 +6,24 @@ $semester_synctime=$semester_sync_time==NULL?'ยังไม่นำเข้�
 $timetable_synctime=$timetable_sync_time==NULL?'ยังไม่นำเข้า':$timetable_sync_time.' ( '.xTimeAgo ($timetable_sync_time, date('Y-m-d H:i:s')).' )';
 $substitute_synctime=$substitute_sync_time==NULL?'ยังไม่นำเข้า':$substitute_sync_time.' ( '.xTimeAgo ($substitute_sync_time, date('Y-m-d H:i:s')).' )';
 $data['content']='
+ <div class="row g-6">
+    <form action="'.module_url('rms','rms','import').'" method="post">
+        <div class="col-md-4">
+            <div class="mb-4">
+            <label for="exampleFormControlInput1" class="form-label">ภาคเรียน</label>
+                <!-- <label for="exampleFormControlSelect1" class="form-label">เลือกภาคเรียน</label> -->
+                    <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="semester">
+                        '.gen_option($semesters,$semester).'
+                    </select>
+            </div>
+        </div>      
+        <div class="col-md-4">
+            <div class="mb-4">
+                <button type="submit" class="btn btn-primary from-control">ตกลง</button>
+            </div>
+        </div>
+    </form>
+</div>
 <div class="table-responsive text-nowrap">
                       <table class="table">
                           <thead>

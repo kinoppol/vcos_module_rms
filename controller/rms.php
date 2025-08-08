@@ -2,6 +2,28 @@
 class rms{
   function import(){
     global $module;
+    
+    $semester_model=$module->model('semester');
+
+    if(!empty($_POST['semester'])){
+      $_SESSION['semester']=$_POST['semester'];
+    }
+
+    if(empty($_SESSION['semester'])){
+      $semester=$semester_model->getCurrentSemester();
+      $_SESSION['semester']=$semester;
+    }else{
+      $semester=$_SESSION['semester'];
+    }
+
+    $all_semester=$semester_model->getSemester();
+    $semesters=array();
+    foreach($all_semester as $k=>$v){
+      $semesters[$k]=$k;
+    }
+
+    $data['semesters']=$semesters;
+    $data['semester']=$semester;
 
     $sync_record=$module->model('sync');
     $data['personal_sync_time']=$sync_record->get_last_record(array('sync_name'=>'personal'));
