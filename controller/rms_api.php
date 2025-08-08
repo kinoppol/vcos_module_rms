@@ -163,7 +163,7 @@ class rms_api{
   function getTimetable(){
     global $module;
     global $system;
-    $semester='2/2567';
+    $semester='1/2568';
     $module->helper('rms');
     $timetable_data=api_load('studing',array('semes'=>$semester));
     $timetable_model=$module->model('timetable');
