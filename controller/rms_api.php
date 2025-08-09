@@ -170,7 +170,17 @@ class rms_api{
     if(count($timetable_data)>0){
     
     $timetable_model->clear(array('semester'=>$semester));
+    $day2num=array(
+      'จันทร์'=>'1',
+      'อังคาร'=>'2',
+      'พุธ'=>'3',
+      'พฤหัส'=>'4',
+      'ศุกร์'=>'5',
+      'เสาร์'=>'6',
+      'อาทิตย์'=>'7',
+    );
     foreach($timetable_data as $row){
+      if(empty($day2num[$row['dpr2']])) continue;//ไม่นำเข้า Blockcourses
       $data=array(
           'timeTableID'=>$row['timeTableID'],
           'timeTableSubID'=>$row['timeTableSubID'],
@@ -180,6 +190,7 @@ class rms_api{
           'student_group_id'=>$row['student_group_id'],
           'time_range'=>$row['dpr3'],
           'day_of_week'=>$row['dpr2'],
+          'day_of_week_no'=>$day2num[$row['dpr2']],
           'time_total'=>$row['dpr4'],
           'teacher_id'=>$row['teacher_id'],
           'teacher_co_id'=>$row['teacher_com_id'],

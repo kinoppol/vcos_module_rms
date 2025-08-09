@@ -9,7 +9,7 @@ class timetable extends dummy_model{
         if(!empty($data)){
             $sql.=' where '.arr2and($data);
         }
-        print $sql;
+        //print $sql;
         $result=$this->db->query($sql);
     }
 
