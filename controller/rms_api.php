@@ -165,7 +165,26 @@ class rms_api{
     global $system;
     $semester='1/2568';
     $module->helper('rms');
-    $timetable_data=api_load('studing',array('semes'=>$semester));
+    $timetable_data=array();
+    $round=0;
+    $step=1000;
+    $imported=0;
+    do{
+      $param=array(
+        'semes'=>$semester,
+        'limit'=>$round*$step.",".$round*$step+$step,
+      );
+      $rr=api_load('studing',$param);
+      if(is_array($rr)&&count($rr)>1){
+        $imported=count($rr);
+        $timetable_data=array_merge($timetable_data,$rr);
+        $round++;
+        //print $round." ".$param['limit']."<br>";
+      }else{
+        $imported=0;
+      }
+    }while($imported>1);
+
     $timetable_model=$module->model('timetable');
     if(count($timetable_data)>0){
     
