@@ -44,9 +44,9 @@ class rms_api{
     $sync_record=$module->model('sync');
     $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'personal','result'=>'ok'));
 
-    print "นำเข้าข้อมูลบุคลากรเรียบร้อย กำลังโหลดค่าตำแหน่งรับผิดชอบ โปรดรอสักครู่..";
-    print redirect(module_api('rms','rms_api','get_people_pro'));
-    //return $ret;
+    $ret['content']="นำเข้าข้อมูลบุคลากรเรียบร้อย กำลังโหลดค่าตำแหน่งรับผิดชอบ โปรดรอสักครู่..";
+    $ret['content'].= redirect(module_api('rms','rms_api','get_people_pro'));
+    return $ret;
   }
 
   function get_people_pro(){
@@ -119,8 +119,8 @@ class rms_api{
     }
 
     //$ret['content']=
-    print redirect(module_url('rms','rms','import'));
-    //return $ret['content'];
+    $ret['content']= redirect(module_url('rms','rms','import'));
+    return $ret;
   }
 
   function getSemester(){
@@ -172,20 +172,22 @@ class rms_api{
     do{
       $param=array(
         'semes'=>$semester,
-        'limit'=>$round*$step.",".$round*$step+$step,
+        'limit'=>($round*$step).",".$step,
       );
       $rr=api_load('studing',$param);
       if(is_array($rr)&&count($rr)>1){
         $imported=count($rr);
         $timetable_data=array_merge($timetable_data,$rr);
         $round++;
-        //print $round." ".$param['limit']."<br>";
+        //print $round." ".$imported." ".$param['limit']."<br>";
       }else{
         $imported=0;
       }
     }while($imported>1);
 
     $timetable_model=$module->model('timetable');
+    //print count($timetable_data);
+    //exit();
     if(count($timetable_data)>0){
     
     $timetable_model->clear(array('semester'=>$semester));
