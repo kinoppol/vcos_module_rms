@@ -147,8 +147,8 @@ class rms_api{
       $sync_record->add_record(array('sync_time'=>date('Y-m-d H:i:s'),'sync_name'=>'semester','result'=>'ok'));
     }
 
-    print redirect(module_url('rms','rms','import'));
-    //return $ret['content'];
+    $ret['content']=redirect(module_url('rms','rms','import'));
+    return $ret['content'];
   }
 
   function getTimetableBlockcourse(){
