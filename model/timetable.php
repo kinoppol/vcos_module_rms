@@ -15,7 +15,7 @@ class timetable extends dummy_model{
 
      function add($data){
         $sql='insert into rms_timetable set '.arr2set($data);
-        //print $sql;
+        //print $sql.'<br>';
         $result=$this->db->query($sql);
     }
 
