@@ -148,7 +148,7 @@ class rms_api{
     }
 
     $ret['content']=redirect(module_url('rms','rms','import'));
-    return $ret['content'];
+    return $ret;
   }
 
   function getTimetableBlockcourse(){
