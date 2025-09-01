@@ -53,12 +53,24 @@ class rms_api{
     global $module;
     global $system;
     $module->helper('rms');
+    $user_model = $module->model('user');
 
     $pro=api_load('people_pro');
     $dep=api_load('people_dep');
     $stagov=api_load('people_stagov');
 
+    if(count($dep)>0){
+      $user_model->clear_dep();
+    }
+
     foreach($dep as $d){
+      $data=array();
+      $data['dep_id']=$d['people_dep_id'];
+      $data['dep_group_id']=$d['people_depgroup_id'];
+      $data['dep_name']=$d['people_dep_name'];
+      $user_model->add_dep($data);
+
+
       if($d['people_dep_name']=='งานพัฒนาหลักสูตรการเรียนการสอน'){//ค้นหา id งานหลักสูตร
         $people_dep_id=$d['people_dep_id'];
         continue;
@@ -83,7 +95,7 @@ class rms_api{
       }
     }
 
-    $user_model = $module->model('user');
+    
 
     //$people_dep_id=322;//งานหลักสูตร
     //print $people_dep_id;
@@ -96,7 +108,17 @@ class rms_api{
     //print_r($stagov_user_type);
 
     $update_data=array();
+    if(count($pro)>0){
+      $user_model->clear_pro();
+    }
     foreach($pro as $p){
+      $data=array();
+      $data['citizen_id']=$p['people_id'];
+      $data['people_stagov_id']=$p['people_stagov_id'];
+      $data['dep_id']=$p['people_dep_id'];
+      $data['school_id']=$p['school_id'];
+      $user_model->add_pro($data);
+
       if($p['people_dep_id']!=$people_dep_id&&$p['people_id']!='9999999999999'){//Not in domain skip;
         continue;
       }

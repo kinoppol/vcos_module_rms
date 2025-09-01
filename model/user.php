@@ -30,4 +30,29 @@ class user extends dummy_model{
         $result=$this->db->query($sql);
     }
 
+    
+    function clear_dep($data=array()){
+        $sql='delete from rms_department';
+        $result=$this->db->query($sql);
+
+    }
+    
+    function add_dep($data){
+        $sql='insert into rms_department set '.arr2set($data);
+        $result=$this->db->query($sql);
+    }
+
+    
+    function clear_pro($data=array()){
+        $sql='delete from rms_people_pro';
+        $result=$this->db->query($sql);
+
+    }
+    
+    function add_pro($data){
+        $sql='insert into rms_people_pro set '.arr2set($data);
+        $result=$this->db->query($sql);
+    }
+
+
 }
