@@ -156,11 +156,15 @@ class rms_api{
     if(count($semester_data)>=1){
       $semester_model->clear();
       foreach($semester_data as $row){
+        $chk_end=$row['datechk_end'];
+        if($row['datechk_end']=='0000-00-00'){//ถ้าไม่ได้กำหนดวันสุดท้ายที่เช็คชื่อให้กำหนดเป็นวันเดียวกันกับวันสิ้นสุดภาคเรียน
+          $chk_end=$row['dateedu_end'];
+        }
       $data=array(
           'semester_start'=>$row['dateedu_start'],
           'semester_end'=>$row['dateedu_end'],
           'semester_eduyear'=>$row['dateedu_eduyear'],
-          'datechk_end'=>$row['datechk_end'],
+          'datechk_end'=>$chk_end,
       );
       $result=$semester_model->add($data);
       }
